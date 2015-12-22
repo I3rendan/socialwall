@@ -21,7 +21,8 @@ angular.module('socialwallApp')
   getPhotos();
 
   function getNewPhotos (){
-    console.log('run?');
+    var time = 0;
+    console.log($scope.bricks);
     $http.get('db/newFeed.json').success(function(data){
       if(data.result===0){
         $interval(function(){
@@ -29,15 +30,21 @@ angular.module('socialwallApp')
         }, 3000,5);
       } else {
         for (var i = 0; i <data.photos.length; i++){
-          console.log(data.photos[i]);
-          $scope.bricks[0].splice(0,0,data.photos[i]);
-          $scope.bricks[0].pop();
-          console.log($scope.bricks);
+          (function(i){
+            $timeout(function() {
+              console.log(i);
+              console.log(data.photos[i]);
+              $scope.bricks[0].splice(0,0,data.photos[i]);
+              $scope.bricks[0].pop();
+              console.log($scope.bricks);
+            }, 3000);
+          })(i);
         }
-
+        time = 3000*data.photos.length;
+        console.log(time);
       }
+      setTimeout(getNewPhotos,time);
     });
-    setTimeout(getNewPhotos,5000);
   }
 
   // getNewPhotos();
