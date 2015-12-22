@@ -29,17 +29,17 @@ angular.module('socialwallApp')
           $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length) - 1);
         }, 3000,5);
       } else {
-        for (var i = 0; i <data.photos.length; i++){
-          (function(i){
-            $timeout(function() {
-              console.log(i);
-              console.log(data.photos[i]);
-              $scope.bricks[0].splice(0,0,data.photos[i]);
-              $scope.bricks[0].pop();
-              console.log($scope.bricks);
-            }, 3000);
-          })(i);
-        }
+        var i = 0;
+        var length = data.photos.length;
+        function addNew(){
+          $scope.bricks[0].splice(0,0,data.photos[i]);
+          $scope.bricks[0].pop();
+          console.log($scope.bricks);
+          i++
+          if (i<length){
+            $timeout(addNew,3000)
+          }
+        } addNew();
         time = 3000*data.photos.length;
         console.log(time);
       }
