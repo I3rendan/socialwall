@@ -1,15 +1,20 @@
+@import variables
+
 body
-  background: #111 url(../images/footer_lodyas.png)
+  background: $color-dark url(../images/footer_lodyas.png)
   margin: 0
   padding: 0
 
 header
   display: inline-block
-  background: #fff
+  background: $color-white
   width: 100%
   box-shadow: 0 1px 3px rgba(0,0,0,0.33)
   text-align: center
   margin-bottom: 0.75em
+
+  // Don't need this right now...
+  display: none
 
   .logo
     display: block
@@ -19,15 +24,37 @@ header
     height: 1.33em
 
 .container
-  padding: 0.5em 1em
+  padding: 0.5em
   display: inline-block
-  width: calc(100% - 2em)
+  width: calc(100% - 1em)
 
 .masonry-brick
   width: 20%
 
+  @media screen and (max-width: $lgscreen)
+    width: 25%
+
+  @media screen and (max-width: $mdscreen)
+    width: 33.3%
+
+  @media screen and (max-width: $smscreen)
+    width: 50%
+
+  &:hover img
+    transform: scale(1.1, 1.1)
+    
+
   &.active
-    width: 50% 
+    width: 50%
+
+    @media screen and (max-width: $lgscreen)
+      width: 67%
+
+    @media screen and (max-width: $mdscreen)
+      width: 75%
+
+    @media screen and (max-width: $smscreen)
+      width: 100%
 
   img
     position: relative
@@ -35,3 +62,4 @@ header
     height: auto
     margin: 0.5em
     box-shadow: 0 1px 3px rgba(0,0,0,0.25)
+    transition: all ease $trans-speed
