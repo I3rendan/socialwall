@@ -1,197 +1,76 @@
 'use strict';
 
 angular.module('socialwallApp')
-.controller('MainCtrl', function ($scope,$http) {
+.controller('MainCtrl', function ($scope, $http, $timeout, $interval) {
   $scope.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
 
-    $http.get('./db/feed.json').success(function(data){
-      $scope.data = data;
+  $scope.bricks = [];
+
+  function getPhotos (){
+    $http.get('db/feed.json').success(function(data){
+      $scope.bricks.push(data.photos);
+      $scope.makeActive(-1);
     });
-  // [
-  //   {
-  //     id: '',
-  //     src: '../images/ex/1.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/2.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/3.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/4.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/5.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/6.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/7.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/8.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/9.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/10.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/1.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/2.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/3.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/4.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/5.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/6.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/7.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/8.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/9.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/10.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/1.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/2.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/3.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/4.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/5.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/6.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/7.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/8.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/9.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/10.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/1.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/2.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/3.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/4.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/5.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/6.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/7.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/8.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/9.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/10.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/1.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/2.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/3.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/4.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/5.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/6.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/7.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/8.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/9.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/10.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/1.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/2.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/3.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/4.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/5.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/6.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/7.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/8.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/9.jpg'
-  //   },{
-  //     id: '',
-  //     src: '../images/ex/10.jpg'
-  //   }
-  // ];
+    // getNewPhotos();
+  }
+
+  getPhotos();
+
+  function getNewPhotos (){
+    console.log('run?');
+    $http.get('db/newFeed.json').success(function(data){
+      if(data.result===0){
+        $interval(function(){
+          $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length) - 1);
+        }, 3000,5);
+      } else {
+        for (var i = 0; i <data.photos.length; i++){
+          console.log(data.photos[i]);
+          $scope.bricks[0].splice(0,0,data.photos[i]);
+          $scope.bricks[0].pop();
+          console.log($scope.bricks);
+        }
+
+      }
+    });
+    setTimeout(getNewPhotos,5000);
+  }
+
+  // getNewPhotos();
+
+  // Demo Stuff
+
+  $scope.add = function add() {
+    $scope.bricks.push();
+  };
+
+  $scope.remove = function remove() {
+    $scope.bricks.splice();
+  };
+
+  // End Demo
+
+
+  var $container = angular.element('#masonry-wrap');
+
+  $scope.getRandomArbitrary = function(min, max){
+    return Math.round(Math.random() * (max - min) + min);
+  };
+
+  // $interval(function(){
+  //   $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length) - 1);
+  // }, 3000,5);
+
+  $scope.makeActive = function(index){
+    $scope.isActive = index;
+    $timeout(function(){
+      $container.masonry('reloadItems');
+      $container.masonry('layout');
+    }, 500);
+  };
+
 });

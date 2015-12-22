@@ -1,25 +1,25 @@
 {
-  result: "success",
-  photos: [
+  "result": "success",
+  "photos": [
     {
-      gif: "http://sbviewer.com/photos/1450732822.gif",
-      jpg: "http://sbviewer.com/photos/1450732822.jpg"
+      "gif": "http://sbviewer.com/photos/1450732822.gif",
+      "jpg": "http://sbviewer.com/photos/1450732822.jpg"
     },
     {
-      gif: "http://sbviewer.com/photos/1450732828.gif",
-      jpg: "http://sbviewer.com/photos/1450732828.jpg"
+      "gif": "http://sbviewer.com/photos/1450732828.gif",
+      "jpg": "http://sbviewer.com/photos/1450732828.jpg"
     },
     {
-      gif: "http://sbviewer.com/photos/1450732835.gif",
-      jpg: "http://sbviewer.com/photos/1450732835.jpg"
+      "gif": "http://sbviewer.com/photos/1450732835.gif",
+      "jpg": "http://sbviewer.com/photos/1450732835.jpg"
     },
     {
-      gif: "http://sbviewer.com/photos/1450732838.gif",
-      jpg: "http://sbviewer.com/photos/1450732838.jpg"
+      "gif": "http://sbviewer.com/photos/1450732838.gif",
+      "jpg": "http://sbviewer.com/photos/1450732838.jpg"
     },
     {
-      gif: "http://sbviewer.com/photos/1450736647.gif",
-      jpg: "http://sbviewer.com/photos/1450736647.jpg"
+      "gif": "http://sbviewer.com/photos/1450736647.gif",
+      "jpg": "http://sbviewer.com/photos/1450736647.jpg"
     }
   ]
 }
