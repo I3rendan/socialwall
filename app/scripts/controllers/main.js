@@ -31,14 +31,14 @@ angular.module('socialwallApp')
 
     $interval(function(){
       $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length));
-    }, 3000);
+    }, 6000);
 
     $scope.makeActive = function(index){
       $scope.isActive = index;
       $timeout(function(){
         $container.masonry('reloadItems');
         $container.masonry('layout');
-      }, 500);
+      }, 750);
     };
 
     $scope.bricks = [
