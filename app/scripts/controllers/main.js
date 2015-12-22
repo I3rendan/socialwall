@@ -14,11 +14,17 @@ angular.module('socialwallApp')
     $http.get('db/feed.json').success(function(data){
       $scope.bricks.push(data.photos);
       $scope.makeActive(-1);
+      $timeout(function(){
+        $container.masonry('reloadItems');
+        $container.masonry('layout');
+      }, 500);
+
     });
     // getNewPhotos();
   }
 
   getPhotos();
+  $scope.data = [];
 
   function getNewPhotos (){
     var time = 0;
@@ -32,15 +38,16 @@ angular.module('socialwallApp')
         var i = 0;
         var length = data.photos.length;
         function addNew(){
-          $scope.bricks[0].splice(0,0,data.photos[i]);
+          $scope.bricks[0].unshift(data.photos[i]);
           $scope.bricks[0].pop();
           console.log($scope.bricks);
-          i++
+          i++;
           if (i<length){
-            $timeout(addNew,3000)
+            $timeout(addNew,6000);
           }
-        } addNew();
-        time = 3000*data.photos.length;
+        }
+        addNew();
+        time = 6000*data.photos.length;
         console.log(time);
       }
       setTimeout(getNewPhotos,time);
