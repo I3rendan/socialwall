@@ -1,5 +1,8 @@
-<div masonry>
-    <div class="masonry-brick" ng-repeat="brick in bricks">
+<div id="masonry-wrap" masonry>
+    <div class="masonry-brick" 
+      ng-repeat="brick in bricks" 
+      ng-click="makeActive($index)"
+      ng-class="{'active': isActive === $index}">
         <img ng-src="{{ brick.src }}" alt="A masonry brick">
     </div>
 </div>

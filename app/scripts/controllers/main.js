@@ -8,187 +8,122 @@ angular.module('socialwallApp')
       'Karma'
     ];
 
+
+    // Demo Stuff
+
+    $scope.add = function add() {
+      $scope.bricks.push();
+    };
+
+    $scope.remove = function remove() {
+      $scope.bricks.splice();
+    };
+
+    // End Demo
+
+
+    $scope.makeActive = function(index){
+      $scope.isActive = index;
+
+      angular.element('#masonry-wrap').masonry('reloadItems');
+      angular.element('#masonry-wrap').masonry();
+    };
+
     $scope.bricks = [
       {
-        id: '',
         src: '../images/ex/1.jpg'
       },{
-        id: '',
         src: '../images/ex/2.jpg'
       },{
-        id: '',
         src: '../images/ex/3.jpg'
       },{
-        id: '',
         src: '../images/ex/4.jpg'
       },{
-        id: '',
         src: '../images/ex/5.jpg'
       },{
-        id: '',
         src: '../images/ex/6.jpg'
       },{
-        id: '',
         src: '../images/ex/7.jpg'
       },{
-        id: '',
         src: '../images/ex/8.jpg'
       },{
-        id: '',
         src: '../images/ex/9.jpg'
       },{
-        id: '',
         src: '../images/ex/10.jpg'
       },{
-        id: '',
         src: '../images/ex/1.jpg'
       },{
-        id: '',
         src: '../images/ex/2.jpg'
       },{
-        id: '',
         src: '../images/ex/3.jpg'
       },{
-        id: '',
         src: '../images/ex/4.jpg'
       },{
-        id: '',
-        src: '../images/ex/5.jpg'
-      },{
-        id: '',
-        src: '../images/ex/6.jpg'
-      },{
-        id: '',
-        src: '../images/ex/7.jpg'
-      },{
-        id: '',
-        src: '../images/ex/8.jpg'
-      },{
-        id: '',
         src: '../images/ex/9.jpg'
       },{
-        id: '',
         src: '../images/ex/10.jpg'
       },{
-        id: '',
         src: '../images/ex/1.jpg'
       },{
-        id: '',
         src: '../images/ex/2.jpg'
       },{
-        id: '',
         src: '../images/ex/3.jpg'
       },{
-        id: '',
         src: '../images/ex/4.jpg'
       },{
-        id: '',
         src: '../images/ex/5.jpg'
       },{
-        id: '',
         src: '../images/ex/6.jpg'
       },{
-        id: '',
+        src: '../images/ex/5.jpg'
+      },{
+        src: '../images/ex/6.jpg'
+      },{
         src: '../images/ex/7.jpg'
       },{
-        id: '',
         src: '../images/ex/8.jpg'
       },{
-        id: '',
+        src: '../images/ex/7.jpg'
+      },{
+        src: '../images/ex/8.jpg'
+      },{
         src: '../images/ex/9.jpg'
       },{
-        id: '',
         src: '../images/ex/10.jpg'
       },{
-        id: '',
         src: '../images/ex/1.jpg'
       },{
-        id: '',
         src: '../images/ex/2.jpg'
       },{
-        id: '',
         src: '../images/ex/3.jpg'
       },{
-        id: '',
         src: '../images/ex/4.jpg'
       },{
-        id: '',
         src: '../images/ex/5.jpg'
       },{
-        id: '',
         src: '../images/ex/6.jpg'
       },{
-        id: '',
         src: '../images/ex/7.jpg'
       },{
-        id: '',
         src: '../images/ex/8.jpg'
       },{
-        id: '',
         src: '../images/ex/9.jpg'
       },{
-        id: '',
         src: '../images/ex/10.jpg'
       },{
-        id: '',
         src: '../images/ex/1.jpg'
       },{
-        id: '',
         src: '../images/ex/2.jpg'
       },{
-        id: '',
         src: '../images/ex/3.jpg'
       },{
-        id: '',
         src: '../images/ex/4.jpg'
       },{
-        id: '',
         src: '../images/ex/5.jpg'
       },{
-        id: '',
         src: '../images/ex/6.jpg'
       },{
-        id: '',
         src: '../images/ex/7.jpg'
-      },{
-        id: '',
-        src: '../images/ex/8.jpg'
-      },{
-        id: '',
-        src: '../images/ex/9.jpg'
-      },{
-        id: '',
-        src: '../images/ex/10.jpg'
-      },{
-        id: '',
-        src: '../images/ex/1.jpg'
-      },{
-        id: '',
-        src: '../images/ex/2.jpg'
-      },{
-        id: '',
-        src: '../images/ex/3.jpg'
-      },{
-        id: '',
-        src: '../images/ex/4.jpg'
-      },{
-        id: '',
-        src: '../images/ex/5.jpg'
-      },{
-        id: '',
-        src: '../images/ex/6.jpg'
-      },{
-        id: '',
-        src: '../images/ex/7.jpg'
-      },{
-        id: '',
-        src: '../images/ex/8.jpg'
-      },{
-        id: '',
-        src: '../images/ex/9.jpg'
-      },{
-        id: '',
-        src: '../images/ex/10.jpg'
       }
     ];
   });

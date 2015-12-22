@@ -30,6 +30,9 @@ header
 
 .masonry-brick
   width: 20%
+  position: relative
+  z-index: 0
+  display: none
 
   @media screen and (max-width: $lgscreen)
     width: 25%
@@ -41,17 +44,20 @@ header
     width: 50%
 
   &:hover img
-    transform: scale(1.1, 1.1)
-    
+    //transform: scale(1.1, 1.1)
+
+  &.loaded
+    display: block
 
   &.active
-    width: 50%
+    width: 60%
+    z-index: 1
 
     @media screen and (max-width: $lgscreen)
-      width: 67%
+      width: 75%
 
     @media screen and (max-width: $mdscreen)
-      width: 75%
+      width: 67%
 
     @media screen and (max-width: $smscreen)
       width: 100%
