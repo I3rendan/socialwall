@@ -8,11 +8,9 @@ angular.module('socialwallApp')
     'Karma'
   ];
 
-  $scope.bricks =
-  $http.jsonp('http://sbviewer.com/app/montagephotos/cfp').success(function(data){
-    console.log(data);
-    $scope.data=data.photos;
-  });
+    $http.get('./db/feed.json').success(function(data){
+      $scope.data = data;
+    });
   // [
   //   {
   //     id: '',
