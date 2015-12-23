@@ -1,11 +1,7 @@
 {
-  "loopTime": 3,
+  "loopTime": 1,
   "result": "success",
   "photos": [
-    {
-      "gif": "http://sbviewer.com/photos/1450763327.gif",
-      "jpg": "http://sbviewer.com/photos/1450763327.jpg"
-    },
     {
       "gif": "http://sbviewer.com/photos/1450732828.gif",
       "jpg": "https://placebear.com/200/200"
@@ -25,10 +21,6 @@
     {
       "gif": "http://sbviewer.com/photos/1450732838.gif",
       "jpg": "https://placebear.com/204/204"
-    },
-    {
-      "gif": "http://sbviewer.com/photos/1450732838.gif",
-      "jpg": "https://placebear.com/205/205"
     }
   ]
 }
