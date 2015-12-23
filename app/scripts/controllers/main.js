@@ -20,7 +20,7 @@ angular.module('socialwallApp')
       }, 500);
 
     });
-    // getNewPhotos();
+    getNewPhotos();
   }
 
   getPhotos();
@@ -33,7 +33,7 @@ angular.module('socialwallApp')
       if(data.result===0){
         $interval(function(){
           $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length) - 1);
-        }, 3000,5);
+        }, (data.loopTime*1000),5);
       } else {
         var i = 0;
         var length = data.photos.length;
@@ -43,11 +43,11 @@ angular.module('socialwallApp')
           console.log($scope.bricks);
           i++;
           if (i<length){
-            $timeout(addNew,6000);
+            $timeout(addNew,(data.loopTime*1000));
           }
         }
         addNew();
-        time = 6000*data.photos.length;
+        time = (data.loopTime*1000)*data.photos.length;
         console.log(time);
       }
       setTimeout(getNewPhotos,time);
