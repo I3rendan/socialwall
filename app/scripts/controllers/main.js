@@ -28,8 +28,8 @@ angular.module('socialwallApp')
 
   function getNewPhotos (){
     var time = 0;
-    console.log($scope.bricks);
     $http.get('db/newFeed.json').success(function(data){
+      $scope.data.push(data.photos);
       if(data.result===0){
         $interval(function(){
           $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length) - 1);
@@ -37,24 +37,25 @@ angular.module('socialwallApp')
       } else {
         var i = 0;
         var length = data.photos.length;
-        function addNew(){
-          $scope.bricks[0].unshift(data.photos[i]);
-          $scope.bricks[0].pop();
-          console.log($scope.bricks);
-          i++;
-          if (i<length){
-            $timeout(addNew,(data.loopTime*1000));
-          }
-        }
-        addNew();
-        time = (data.loopTime*1000)*data.photos.length;
+        var repeatTime = (data.loopTime*1000)
+
+        addNew(i);
+        time = (data.loopTime*1000)*length;
         console.log(time);
       }
       setTimeout(getNewPhotos,time);
     });
   }
 
-  // getNewPhotos();
+  function addNew(i){
+    $scope.bricks[0].unshift($scope.data[0][i]);
+    $scope.bricks[0].pop();
+    i++;
+    console.log(i);
+    if (i<length){
+      $timeout(addNew,3000);
+    }
+  }
 
   // Demo Stuff
 
