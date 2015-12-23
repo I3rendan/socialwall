@@ -102,40 +102,6 @@ angular.module('socialwallApp')
         src: '../images/ex/9.jpg'
       },{
         src: '../images/ex/10.jpg'
-      },{
-        src: '../images/ex/1.jpg'
-      },{
-        src: '../images/ex/2.jpg'
-      },{
-        src: '../images/ex/3.jpg'
-      },{
-        src: '../images/ex/4.jpg'
-      },{
-        src: '../images/ex/5.jpg'
-      },{
-        src: '../images/ex/6.jpg'
-      },{
-        src: '../images/ex/7.jpg'
-      },{
-        src: '../images/ex/8.jpg'
-      },{
-        src: '../images/ex/9.jpg'
-      },{
-        src: '../images/ex/10.jpg'
-      },{
-        src: '../images/ex/1.jpg'
-      },{
-        src: '../images/ex/2.jpg'
-      },{
-        src: '../images/ex/3.jpg'
-      },{
-        src: '../images/ex/4.jpg'
-      },{
-        src: '../images/ex/5.jpg'
-      },{
-        src: '../images/ex/6.jpg'
-      },{
-        src: '../images/ex/7.jpg'
       }
     ];
   });
