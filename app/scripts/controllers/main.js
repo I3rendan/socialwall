@@ -11,19 +11,18 @@ angular.module('socialwallApp')
   $scope.bricks = [];
   $scope.data = [];
   $scope.delayTime = 3000;
-  var $container = angular.element('#masonry-wrap');
+  $scope.container = angular.element('#masonry-wrap');
 
-  function getPhotos (){
+  function getPhotos(){
+
+    // The offical feed url...
     //$http.get('/app/montagephotos/cfp').success(function(data){
+    
     $http.get('/db/feed.json').success(function(data){
-
-      console.log('DATA: ' + data);
-
       $scope.bricks.push(data.photos);
-      $scope.makeActive(-1);
+      $scope.isActive = -1;
       $timeout(function(){
-        $container.masonry('reloadItems');
-        $container.masonry('layout');
+        shuffleBricks();
       }, 500);
     });
     $scope.loopTimeout = $timeout(getNewPhotos, $scope.delayTime);
@@ -33,42 +32,42 @@ angular.module('socialwallApp')
 
   function getNewPhotos(){
 
-    //$http.get('/app/montagephotosnew/cfp').success(function(data){
+    // The offical feed url...
+    // $http.get('/app/montagephotosnew/cfp').success(function(data){
+    
     $http.get('/db/newFeed.json').success(function(data){
 
       $scope.data = [];
       $scope.data.push(data.photos);
-      $scope.delayTime = data.loopTime * 1000;
+
+      // THey don't have this on the json yet so commenting out...
+      // $scope.delayTime = data.loopTime * 1000;
 
       if (data.result === 0){
-
-        $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length) - 1);
-        $scope.loopTimeout = $timeout(getNewPhotos, $scope.delayTime);
-
+        $timeout.cancel($scope.loopTimeout);
+        $scope.isActive = getRandomArbitrary(0, $scope.bricks[0].length - 1);
+        $timeout(function(){
+          shuffleBricks();
+          $scope.loopTimeout = $timeout(getNewPhotos, $scope.delayTime);
+        }, 500);
       } else {
-        
         addNewLoop();
-        
       }
     });
   }
 
   function addNew(){
-
-    console.log('Data Length: ' + $scope.data[0].length);
-    console.log('Bricks Length: ' + $scope.bricks[0].length);
-
-    if ($scope.data.length > 1){
-      
-      $scope.bricks[0].pop();
-      $scope.bricks[0].unshift($scope.data[0][0]);
+    if ($scope.data[0].length > 0){
+      $scope.bricks[0].shift();
+      $scope.bricks[0].push($scope.data[0][0]);
       $scope.data[0].shift();
-      $scope.loopTimeout = $timeout(addNewLoop, $scope.delayTime);
-
+      $scope.isActive = $scope.bricks[0].length - 1;
+      $timeout(function(){
+        shuffleBricks();
+        $scope.loopTimeout = $timeout(addNewLoop, $scope.delayTime);
+      }, 500);
     } else {
-
       $scope.loopTimeout = $timeout(getNewPhotos, $scope.delayTime);
-
     }
   }
 
@@ -77,16 +76,13 @@ angular.module('socialwallApp')
     addNew();
   }
 
-  $scope.getRandomArbitrary = function(min, max){
-    return Math.round(Math.random() * (max - min) + min);
-  };
+  function shuffleBricks(){
+    $scope.container.masonry('reloadItems');
+    $scope.container.masonry('layout');
+  }
 
-  $scope.makeActive = function(index){
-    $scope.isActive = index;
-    $scope.loopTimeout = $timeout(function(){
-      $container.masonry('reloadItems');
-      $container.masonry('layout');
-    }, 500);
-  };
+  function getRandomArbitrary(min, max){
+    return Math.round(Math.random() * (max - min) + min);
+  }
 
 });
