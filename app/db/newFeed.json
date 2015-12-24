@@ -3,32 +3,20 @@
   "result": "success",
   "photos": [
     {
-      "gif": "http://sbviewer.com/photos/1450763327.gif",
-      "jpg": "http://sbviewer.com/photos/1450763327.jpg"
-    },
-    {
-      "gif": "http://sbviewer.com/photos/1450732828.gif",
-      "jpg": "https://placebear.com/200/200"
-    },
-    {
-      "gif": "http://sbviewer.com/photos/1450732835.gif",
-      "jpg": "https://placebear.com/201/201"
-    },
-    {
-      "gif": "http://sbviewer.com/photos/1450732838.gif",
-      "jpg": "https://placebear.com/202/202"
-    },
-    {
-      "gif": "http://sbviewer.com/photos/1450732838.gif",
-      "jpg": "https://placebear.com/203/203"
-    },
-    {
-      "gif": "http://sbviewer.com/photos/1450732838.gif",
-      "jpg": "https://placebear.com/204/204"
-    },
-    {
-      "gif": "http://sbviewer.com/photos/1450732838.gif",
-      "jpg": "https://placebear.com/205/205"
+      "gif": "",
+      "jpg": "/images/ex/6.jpg"
+    },{
+      "gif": "",
+      "jpg": "/images/ex/7.jpg"
+    },{
+      "gif": "",
+      "jpg": "/images/ex/8.jpg"
+    },{
+      "gif": "",
+      "jpg": "/images/ex/9.jpg"
+    },{
+      "gif": "",
+      "jpg": "/images/ex/10.jpg"
     }
   ]
 }

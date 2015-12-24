@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('socialwallApp')
-.controller('MainCtrl', function ($scope, $http, $timeout, $interval) {
+.controller('MainCtrl', function ($scope, $http, $timeout) {
   $scope.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
@@ -9,83 +9,80 @@ angular.module('socialwallApp')
   ];
 
   $scope.bricks = [];
+  $scope.data = [];
+  $scope.delayTime = 3000;
+  $scope.container = angular.element('#masonry-wrap');
 
-  function getPhotos (){
-    $http.get('db/feed.json').success(function(data){
+  function getPhotos(){
+
+    // The offical feed url...
+    //$http.get('/app/montagephotos/cfp').success(function(data){
+    
+    $http.get('/db/feed.json').success(function(data){
       $scope.bricks.push(data.photos);
-      $scope.makeActive(-1);
+      $scope.isActive = -1;
       $timeout(function(){
-        $container.masonry('reloadItems');
-        $container.masonry('layout');
+        shuffleBricks();
       }, 500);
-
     });
-    getNewPhotos();
+    $scope.loopTimeout = $timeout(getNewPhotos, $scope.delayTime);
   }
 
   getPhotos();
-  $scope.data = [];
 
-  function getNewPhotos (){
-    var time = 0;
-    $http.get('db/newFeed.json').success(function(data){
+  function getNewPhotos(){
+
+    // The offical feed url...
+    // $http.get('/app/montagephotosnew/cfp').success(function(data){
+    
+    $http.get('/db/newFeed.json').success(function(data){
+
+      $scope.data = [];
       $scope.data.push(data.photos);
-      if(data.result===0){
-        $interval(function(){
-          $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length) - 1);
-        }, (data.loopTime*1000),5);
-      } else {
-        var i = 0;
-        var length = data.photos.length;
-        var repeatTime = (data.loopTime*1000)
 
-        addNew(i);
-        time = (data.loopTime*1000)*length;
-        console.log(time);
+      // THey don't have this on the json yet so commenting out...
+      // $scope.delayTime = data.loopTime * 1000;
+
+      if (data.result === 0){
+        $timeout.cancel($scope.loopTimeout);
+        $scope.isActive = getRandomArbitrary(0, $scope.bricks[0].length - 1);
+        $timeout(function(){
+          shuffleBricks();
+          $scope.loopTimeout = $timeout(getNewPhotos, $scope.delayTime);
+        }, 500);
+      } else {
+        addNewLoop();
       }
-      setTimeout(getNewPhotos,time);
     });
   }
 
-  function addNew(i){
-    $scope.bricks[0].unshift($scope.data[0][i]);
-    $scope.bricks[0].pop();
-    i++;
-    console.log(i);
-    if (i<length){
-      $timeout(addNew,3000);
+  function addNew(){
+    if ($scope.data[0].length > 0){
+      $scope.bricks[0].shift();
+      $scope.bricks[0].push($scope.data[0][0]);
+      $scope.data[0].shift();
+      $scope.isActive = $scope.bricks[0].length - 1;
+      $timeout(function(){
+        shuffleBricks();
+        $scope.loopTimeout = $timeout(addNewLoop, $scope.delayTime);
+      }, 500);
+    } else {
+      $scope.loopTimeout = $timeout(getNewPhotos, $scope.delayTime);
     }
   }
 
-  // Demo Stuff
+  function addNewLoop(){
+    $timeout.cancel($scope.loopTimeout);
+    addNew();
+  }
 
-  $scope.add = function add() {
-    $scope.bricks.push();
-  };
+  function shuffleBricks(){
+    $scope.container.masonry('reloadItems');
+    $scope.container.masonry('layout');
+  }
 
-  $scope.remove = function remove() {
-    $scope.bricks.splice();
-  };
-
-  // End Demo
-
-
-  var $container = angular.element('#masonry-wrap');
-
-  $scope.getRandomArbitrary = function(min, max){
+  function getRandomArbitrary(min, max){
     return Math.round(Math.random() * (max - min) + min);
-  };
-
-  // $interval(function(){
-  //   $scope.makeActive($scope.getRandomArbitrary(0, $scope.bricks.length) - 1);
-  // }, 3000,5);
-
-  $scope.makeActive = function(index){
-    $scope.isActive = index;
-    $timeout(function(){
-      $container.masonry('reloadItems');
-      $container.masonry('layout');
-    }, 500);
-  };
+  }
 
 });
