@@ -1,8 +1,9 @@
 <div id="masonry-wrap" masonry>
-    <div class="masonry-brick" 
-      ng-repeat="brick in bricks" 
+    <div class="masonry-brick"
+      ng-repeat="brick in bricks[0] | orderBy:$index:reverse"
       ng-click="makeActive($index)"
       ng-class="{'active': isActive === $index}">
-        <img ng-src="{{ brick.src }}" alt="A masonry brick">
+        <span>{{ $index }} </span>
+        <img ng-src="{{ brick.jpg }}" alt="A masonry brick">
     </div>
 </div>

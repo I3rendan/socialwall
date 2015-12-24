@@ -1,0 +1,22 @@
+{
+  "loopTime": 3,
+  "result": "success",
+  "photos": [
+    {
+      "gif": "",
+      "jpg": "/images/ex/6.jpg"
+    },{
+      "gif": "",
+      "jpg": "/images/ex/7.jpg"
+    },{
+      "gif": "",
+      "jpg": "/images/ex/8.jpg"
+    },{
+      "gif": "",
+      "jpg": "/images/ex/9.jpg"
+    },{
+      "gif": "",
+      "jpg": "/images/ex/10.jpg"
+    }
+  ]
+}
