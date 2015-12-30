@@ -1,9 +1,12 @@
 <div id="masonry-wrap" masonry>
+    <!-- Initialize the grid (when adding to the front of the line) -->
+    <div class="masonry-brick first-one"><img></div>
+
+    <!-- Masonry bricks array -->
     <div class="masonry-brick"
-      ng-repeat="brick in bricks[0] | orderBy:$index:reverse"
+      ng-repeat="brick in bricks[0]"
       ng-click="makeActive($index)"
       ng-class="{'active': isActive === $index}">
-        <span>{{ $index }} </span>
         <img ng-src="{{ brick.jpg }}" alt="A masonry brick">
     </div>
 </div>
