@@ -1,21 +1,99 @@
 {
+  "loopTime": 3,
+  "gifRunTime": 2,
+  "colNum": 5,
   "result": "success",
   "photos": [
     {
-      "gif": "",
+      "gif": "/images/ex/1.jpg",
       "jpg": "/images/ex/1.jpg"
     },{
-      "gif": "",
+      "gif": "/images/ex/2.jpg",
       "jpg": "/images/ex/2.jpg"
     },{
-      "gif": "",
+      "gif": "/images/ex/3.jpg",
       "jpg": "/images/ex/3.jpg"
     },{
-      "gif": "",
+      "gif": "/images/ex/4.jpg",
       "jpg": "/images/ex/4.jpg"
     },{
-      "gif": "",
+      "gif": "/images/ex/5.jpg",
       "jpg": "/images/ex/5.jpg"
+    },{
+      "gif": "/images/ex/6.jpg",
+      "jpg": "/images/ex/6.jpg"
+    },{
+      "gif": "/images/ex/7.jpg",
+      "jpg": "/images/ex/7.jpg"
+    },{
+      "gif": "/images/ex/8.jpg",
+      "jpg": "/images/ex/8.jpg"
+    },{
+      "gif": "/images/ex/9.jpg",
+      "jpg": "/images/ex/9.jpg"
+    },{
+      "gif": "/images/ex/10.jpg",
+      "jpg": "/images/ex/10.jpg"
+    },{
+      "gif": "/images/ex/11.jpg",
+      "jpg": "/images/ex/11.jpg"
+    },{
+      "gif": "/images/ex/12.jpg",
+      "jpg": "/images/ex/12.jpg"
+    },{
+      "gif": "/images/ex/13.jpg",
+      "jpg": "/images/ex/13.jpg"
+    },{
+      "gif": "/images/ex/14.jpg",
+      "jpg": "/images/ex/14.jpg"
+    },{
+      "gif": "/images/ex/15.jpg",
+      "jpg": "/images/ex/15.jpg"
+    },{
+      "gif": "/images/ex/16.jpg",
+      "jpg": "/images/ex/16.jpg"
+    },{
+      "gif": "/images/ex/17.jpg",
+      "jpg": "/images/ex/17.jpg"
+    },{
+      "gif": "/images/ex/18.jpg",
+      "jpg": "/images/ex/18.jpg"
+    },{
+      "gif": "/images/ex/19.jpg",
+      "jpg": "/images/ex/19.jpg"
+    },{
+      "gif": "/images/ex/20.jpg",
+      "jpg": "/images/ex/20.jpg"
+    },{
+      "gif": "/images/ex/21.jpg",
+      "jpg": "/images/ex/21.jpg"
+    },{
+      "gif": "/images/ex/22.jpg",
+      "jpg": "/images/ex/22.jpg"
+    },{
+      "gif": "/images/ex/23.jpg",
+      "jpg": "/images/ex/23.jpg"
+    },{
+      "gif": "/images/ex/24.jpg",
+      "jpg": "/images/ex/24.jpg"
+    },{
+      "gif": "/images/ex/25.jpg",
+      "jpg": "/images/ex/25.jpg"
+    },{
+      "gif": "/images/ex/26.jpg",
+      "jpg": "/images/ex/26.jpg"
+    },{
+      "gif": "/images/ex/27.jpg",
+      "jpg": "/images/ex/27.jpg"
+    },{
+      "gif": "/images/ex/28.jpg",
+      "jpg": "/images/ex/28.jpg"
+    },{
+      "gif": "/images/ex/29.jpg",
+      "jpg": "/images/ex/29.jpg"
+    },{
+      "gif": "/images/ex/30.jpg",
+      "jpg": "/images/ex/30.jpg"
     }
   ]
 }

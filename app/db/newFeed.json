@@ -1,22 +1,24 @@
 {
   "loopTime": 3,
+  "gifRunTime": 2,
   "result": "success",
+  "colNum": 5,
   "photos": [
     {
-      "gif": "",
-      "jpg": "/images/ex/6.jpg"
+      "gif": "/images/ex/31.jpg",
+      "jpg": "/images/ex/31.jpg"
     },{
-      "gif": "",
-      "jpg": "/images/ex/7.jpg"
+      "gif": "/images/ex/32.jpg",
+      "jpg": "/images/ex/32.jpg"
     },{
-      "gif": "",
-      "jpg": "/images/ex/8.jpg"
+      "gif": "/images/ex/33.jpg",
+      "jpg": "/images/ex/33.jpg"
     },{
-      "gif": "",
-      "jpg": "/images/ex/9.jpg"
+      "gif": "/images/ex/34.jpg",
+      "jpg": "/images/ex/34.jpg"
     },{
-      "gif": "",
-      "jpg": "/images/ex/10.jpg"
+      "gif": "/images/ex/35.jpg",
+      "jpg": "/images/ex/35.jpg"
     }
   ]
 }

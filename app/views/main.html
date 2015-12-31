@@ -1,12 +1,25 @@
-<div id="masonry-wrap" masonry>
-    <!-- Initialize the grid (when adding to the front of the line) -->
-    <div class="masonry-brick first-one"><img></div>
+<div id="masonry-wrap"
+  ng-class="{ 'new-item': newLoad === true }">
+  <div id="brick{{ $index }}" 
+    class="brick"
+    style="width: {{ colNumWidth }}%"
+    ng-class="{ 'newAdd': doneLoad === false }"
+    ng-repeat="brick in bricks[0] track by $index">
+    <img ng-src="{{ brick.jpg }}" alt="Brick">
+  </div>
+</div>
+<div id="new-brick"
+  ng-class="{ 'loaded': newLoad === true, 'done': doneLoad === true }"
+  ng-style="newBrickStyle">
+  <img ng-src="{{ newBrick.gif }}" alt="New Brick">
+</div>
 
-    <!-- Masonry bricks array -->
+<!-- <div id="masonry-wrap" masonry>
+    <div class="masonry-brick first-one"><img></div>
     <div class="masonry-brick"
       ng-repeat="brick in bricks[0]"
       ng-click="makeActive($index)"
       ng-class="{'active': isActive === $index}">
         <img ng-src="{{ brick.jpg }}" alt="A masonry brick">
     </div>
-</div>
+</div> -->
