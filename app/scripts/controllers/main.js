@@ -49,8 +49,10 @@ angular.module('socialwallApp')
   };
 
   $scope.sizeNewBrick = function(){
-    $scope.newBrickWidth = angular.element('#new-brick').width();
-    $scope.newBrickHeight = angular.element('#new-brick').height();
+    // $scope.newBrickWidth = angular.element('#new-brick').width();
+    // $scope.newBrickHeight = angular.element('#new-brick').height();
+    $scope.newBrickWidth = 749;
+    $scope.newBrickHeight = 421;
 
     console.log('NEW WIDTH: ' + $scope.newBrickWidth);
     console.log('NEW HEIGHT: ' + $scope.newBrickHeight);
