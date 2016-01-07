@@ -20,24 +20,20 @@ angular.module('socialwallApp')
   $scope.container = angular.element('#masonry-wrap');
 
   $scope.getPhotos = function(){
-
     // The offical feed url...
     //$http.get('/app/montagephotos/cfp').success(function(data){
+
+    // Demo feed url
     $http.get('/db/feed.json').success(function(data){
       $scope.bricks.push(data.photos);
-      $scope.bricksDupe = $scope.bricks;
+      $scope.bricksDupe = angular.copy($scope.bricks);
       $scope.isActive = -1;
       $scope.loopTime = data.loopTime * 1000;
       $scope.gifRunTime = data.gifRunTime * 1000;
       $scope.colNum = data.colNum;
       $scope.sizeGrid();
     });
-    $scope.loopTimeout = $timeout(function(){
-      $scope.getNewPhotos();
-    }, $scope.loopTime);
   };
-
-  $scope.getPhotos();
 
   $scope.sizeGrid = function(){
     $scope.colNumWidth = 100 / $scope.colNum;
@@ -45,18 +41,13 @@ angular.module('socialwallApp')
     $scope.winHeight = $window.innerHeight;
     $scope.brickWidth = angular.element('.brick').width();
     $scope.brickHeight = angular.element('.brick').height();
-    $scope.gridCount = Math.round($scope.winWidth / $scope.brickWidth) * Math.round($scope.winHeight / $scope.brickHeight);
+    $scope.colStyle = {'width': $scope.colNumWidth + '%'};
+    $scope.getNewPhotos();
   };
 
   $scope.sizeNewBrick = function(){
-    // $scope.newBrickWidth = angular.element('#new-brick').width();
-    // $scope.newBrickHeight = angular.element('#new-brick').height();
-    $scope.newBrickWidth = 749;
-    $scope.newBrickHeight = 421;
-
-    console.log('NEW WIDTH: ' + $scope.newBrickWidth);
-    console.log('NEW HEIGHT: ' + $scope.newBrickHeight);
-    
+    $scope.newBrickWidth = angular.element('#new-brick').width();
+    $scope.newBrickHeight = angular.element('#new-brick').height();
     $scope.newLeft = ($scope.winWidth / 2) - ($scope.newBrickWidth / 2) + 'px';
     $scope.newTop = ($scope.winHeight / 2) - ($scope.newBrickHeight / 2) + 'px';
     $scope.newBrickStyle = {'top': $scope.newTop, 'left': $scope.newLeft};
@@ -67,11 +58,11 @@ angular.module('socialwallApp')
   });
 
   $scope.getNewPhotos = function(){
-
     // The offical feed url...
     //$http.get('/app/montagephotosnew/cfp').success(function(data){
-    $http.get('/db/newFeed.json').success(function(data){
 
+    // Demo feed url
+    $http.get('/db/newFeed.json').success(function(data){
       $scope.data = [];
       $scope.data.push(data.photos);
       $scope.loopTime = data.loopTime * 1000;
@@ -98,41 +89,45 @@ angular.module('socialwallApp')
     if (isNew === true){
 
       $scope.newBrick = $scope.data[0][0];
-      $scope.newLoad = true;
-      $scope.doneLoad = false;
-      $scope.sizeNewBrick();
 
-      $scope.gifTimeout = $timeout(function(){
-        $scope.newLoad = false;
-        $scope.doneLoad = true;
+      angular.element('#new-brick-img').ready(function(){
 
-        $scope.swapItem.animate({ opacity: 0 }, 500, function(){
-          $scope.bricks[0][$scope.isActive] = $scope.newBrick;
-          $scope.data[0].shift();
-          $scope.bricksDupe = $scope.bricks;
-          $scope.$apply();
-          $scope.swapItem.animate({ opacity: 1 }, 500);
+        $scope.sizeNewBrick();
+
+        $scope.newVisible = true;
+        angular.element('#new-brick').animate({opacity: 1}, 500, function(){
+
+          $scope.gifTimeout = $timeout(function(){
+
+            angular.element('#new-brick').animate({opacity: 0}, 500);
+
+            $scope.swapItem.animate({ opacity: 0 }, 500, function(){
+              $scope.bricks[0][$scope.isActive] = $scope.newBrick;
+              $scope.bricksDupe[0].push($scope.data[0][0]);
+              $scope.data[0].shift();
+              $scope.$apply();
+              $scope.swapItem.animate({ opacity: 1 }, 500);
+            });
+
+            var swapTop = $scope.swapItem.offset().top;
+            var swapLeft = $scope.swapItem.offset().left;
+            var swapWidth = $scope.swapItem.width();
+            var swapHeight = $scope.swapItem.height();
+
+            $scope.newTop = swapTop + (swapHeight / 2) + 'px';
+            $scope.newLeft = swapLeft + (swapWidth / 2) + 'px';
+            $scope.newBrickStyle = {'top': $scope.newTop, 'left': $scope.newLeft};
+            $scope.newVisible = false;
+        
+            $scope.loopTimeout = $timeout(function(){
+              $scope.addNewLoop();
+            }, $scope.loopTime);
+          }, $scope.gifRunTime);
         });
-
-        var swapTop = $scope.swapItem.offset().top;
-        var swapLeft = $scope.swapItem.offset().left;
-        var swapWidth = $scope.swapItem.width();
-        var swapHeight = $scope.swapItem.height();
-
-        $scope.newTop = swapTop + (swapHeight / 2) + 'px';
-        $scope.newLeft = swapLeft + (swapWidth / 2) + 'px';
-        $scope.newBrickStyle = {'top': $scope.newTop, 'left': $scope.newLeft};
-        
-        
-        $scope.loopTimeout = $timeout(function(){
-          $scope.addNewLoop();
-        }, $scope.loopTime);
-
-      
-      }, $scope.gifRunTime);
+      });
     } else {
       $scope.swapItem.animate({ opacity: 0 }, 500, function(){
-        $scope.newBrick = $scope.bricksDupe[0][getRandomArbitrary(0, $scope.bricks[0].length - 1)];
+        $scope.newBrick = $scope.bricksDupe[0][getRandomArbitrary(0, $scope.bricksDupe[0].length - 1)];
         $scope.bricks[0][$scope.isActive] = $scope.newBrick;
         $scope.$apply();
         $scope.swapItem.animate({ opacity: 1 }, 500);
@@ -157,5 +152,4 @@ angular.module('socialwallApp')
   function getRandomArbitrary(min, max){
     return Math.round(Math.random() * (max - min) + min);
   }
-
 });

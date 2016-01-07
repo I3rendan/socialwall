@@ -38,10 +38,12 @@ header
   top: 0
   left: 0
   opacity: 1
-  transition: opacity ease $trans-speed
+  transition: opacity ease $trans-speed, filter ease $trans-speed
+  filter: none
 
   &.new-item
-    opacity: 0.5
+    opacity: 0.35
+    -webkit-filter: grayscale(100%)
 
 #new-brick
   position: absolute
@@ -49,23 +51,19 @@ header
   margin: auto
   top: 0
   left: 0
-  background: $color-dark
-  box-shadow: 0 10px 15px rgba(0,0,0,0.75)
   z-index: 1
-  transition: all ease $trans-speed
-  opacity: 0
+  transition: top ease $trans-speed, left ease $trans-speed, transform ease $trans-speed
+  transform: scale(0,0)
+  transform-origin: top left
 
-  &.loaded
-    opacity: 1
-
-  &.done
-    opacity: 0
-    width: 0
-    box-shadow: none
+  &.visible
+    transform: scale(1,1)
 
   img
     width: 100%
+    height: 100%
     display: block
+    box-shadow: 0 10px 15px rgba(0,0,0,0.75)
 
 .brick
   position: relative
@@ -95,5 +93,5 @@ header
     width: calc(100% - 1em)
     height: auto
     margin: 0.5em
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25)
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5)
     transition: all ease $trans-speed
