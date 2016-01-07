@@ -32,6 +32,7 @@ angular.module('socialwallApp')
       $scope.gifRunTime = data.gifRunTime * 1000;
       $scope.colNum = data.colNum;
       $scope.sizeGrid();
+      $scope.getNewPhotos();
     });
   };
 
@@ -42,7 +43,6 @@ angular.module('socialwallApp')
     $scope.brickWidth = angular.element('.brick').width();
     $scope.brickHeight = angular.element('.brick').height();
     $scope.colStyle = {'width': $scope.colNumWidth + '%'};
-    $scope.getNewPhotos();
   };
 
   $scope.sizeNewBrick = function(){
