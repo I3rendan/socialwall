@@ -1,6 +1,6 @@
 <div id="masonry-wrap"
   ng-class="{ 'new-item': newVisible === true }"
-  ng-init="getPhotos()">
+  ng-init="getPhotos(true)">
   <div id="brick{{ $index }}" 
     class="brick"
     ng-style="colStyle"
@@ -12,4 +12,18 @@
   ng-class="{'visible': newVisible}"
   ng-style="newBrickStyle">
   <img id="new-brick-img" ng-src="{{ newBrick.gif }}" alt="New Brick">
+</div>
+<div class="masonry-hidden">
+  <div class="brick"
+    ng-style="colStyle"
+    ng-repeat="brick in bricks[0] track by $index">
+    <img ng-src="{{ brick.jpg }}" alt="Brick">
+  </div>
+</div>
+<div class="masonry-hidden">
+  <div class="brick"
+    ng-style="colStyle"
+    ng-repeat="brick in bricksDupe[0] track by $index">
+    <img ng-src="{{ brick.jpg }}" alt="Brick">
+  </div>
 </div>

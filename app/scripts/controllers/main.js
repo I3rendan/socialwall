@@ -11,7 +11,7 @@ angular.module('socialwallApp')
   $scope.bricks = [];
   $scope.bricksDupe = [];
   $scope.data = [];
-  $scope.gridCount = 0;
+  $scope.cycleCount = 0;
   $scope.newLeft = 0;
   $scope.newTop = 0;
   $scope.colNum = 5;
@@ -19,14 +19,19 @@ angular.module('socialwallApp')
   $scope.gifRunTime = 2000;
   $scope.container = angular.element('#masonry-wrap');
 
-  $scope.getPhotos = function(){
+  $scope.getPhotos = function(isInit){
     // The offical feed url...
-    //$http.get('/app/montagephotos/cfp').success(function(data){
+    $http.get('/app/montagephotos/cfp').success(function(data){
 
     // Demo feed url
-    $http.get('/db/feed.json').success(function(data){
-      $scope.bricks.push(data.photos);
-      $scope.bricksDupe = angular.copy($scope.bricks);
+    //$http.get('/db/feed.json').success(function(data){
+      if (isInit === true){
+        $scope.bricks.push(data.photos);
+        $scope.bricksDupe = angular.copy($scope.bricks);
+      } else {
+        $scope.bricksDupe = [];
+        $scope.bricksDupe.push(data.photos);
+      }
       $scope.isActive = -1;
       $scope.loopTime = data.loopTime * 1000;
       $scope.gifRunTime = data.gifRunTime * 1000;
@@ -59,10 +64,10 @@ angular.module('socialwallApp')
 
   $scope.getNewPhotos = function(){
     // The offical feed url...
-    //$http.get('/app/montagephotosnew/cfp').success(function(data){
+    $http.get('/app/montagephotosnew/cfp').success(function(data){
 
     // Demo feed url
-    $http.get('/db/newFeed.json').success(function(data){
+    //$http.get('/db/newFeed.json').success(function(data){
       $scope.data = [];
       $scope.data.push(data.photos);
       $scope.loopTime = data.loopTime * 1000;
@@ -88,23 +93,24 @@ angular.module('socialwallApp')
 
     if (isNew === true){
 
+      $scope.cycleCount = 0;
       $scope.newBrick = $scope.data[0][0];
 
       angular.element('#new-brick-img').ready(function(){
 
         $scope.sizeNewBrick();
-
+        
         $scope.newVisible = true;
         angular.element('#new-brick').animate({opacity: 1}, 500, function(){
 
           $scope.gifTimeout = $timeout(function(){
-
             angular.element('#new-brick').animate({opacity: 0}, 500);
 
             $scope.swapItem.animate({ opacity: 0 }, 500, function(){
               $scope.bricks[0][$scope.isActive] = $scope.newBrick;
               $scope.bricksDupe[0].push($scope.data[0][0]);
               $scope.data[0].shift();
+              $scope.newBrick = [];
               $scope.$apply();
               $scope.swapItem.animate({ opacity: 1 }, 500);
             });
@@ -125,11 +131,15 @@ angular.module('socialwallApp')
           }, $scope.gifRunTime);
         });
       });
+    } else if ($scope.cycleCount === $scope.bricks[0].length / 2){
+      $scope.cycleCount = 0;
+      $scope.getPhotos(false);
     } else {
       $scope.swapItem.animate({ opacity: 0 }, 500, function(){
         $scope.newBrick = $scope.bricksDupe[0][getRandomArbitrary(0, $scope.bricksDupe[0].length - 1)];
         $scope.bricks[0][$scope.isActive] = $scope.newBrick;
         $scope.$apply();
+        $scope.cycleCount++;
         $scope.swapItem.animate({ opacity: 1 }, 500);
       });
     }
