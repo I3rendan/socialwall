@@ -93,6 +93,7 @@ angular.module('socialwallApp')
 
     if (isNew === true){
 
+      $scope.newBrick = [];
       $scope.cycleCount = 0;
       $scope.newBrick = $scope.data[0][0];
 
