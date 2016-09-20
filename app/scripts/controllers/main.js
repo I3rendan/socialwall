@@ -103,6 +103,7 @@ angular.module('socialwallApp')
 
     if (isNew === true){
 
+      $scope.newBrick = [];
       $scope.cycleCount = 0;
       $scope.newBrick = [];
       $scope.newBrick = $scope.data[0][0];
@@ -141,7 +142,7 @@ angular.module('socialwallApp')
             }, $scope.loopTime);
           }, $scope.gifRunTime);
         });
-      }, 1000);
+      }, 3000);
     } else if ($scope.cycleCount === $scope.bricks[0].length / 2){
       $scope.cycleCount = 0;
       $scope.getPhotos(false);
