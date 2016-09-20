@@ -33,7 +33,6 @@ header
 
 #masonry-wrap
   position: relative
-  height: calc(100% - 1em)
   width: calc(100% - 1em)
   padding: 0.5em
   top: 0
@@ -41,6 +40,7 @@ header
   opacity: 1
   transition: opacity ease $trans-speed, filter ease $trans-speed
   filter: none
+  display: block
 
   &.new-item
     opacity: 0.35
